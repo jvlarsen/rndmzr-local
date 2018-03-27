@@ -1,21 +1,22 @@
 import React from 'react';
+import Progress from 'react-progressbar';
 
 export default class Timer extends React.Component {
     constructor(props) {
         super(props);
-        this.state={secondsElapsed:0}
+        this.state={minutesElapsed:0}
     }
 
     getInitialState() {
-      return {secondsElapsed: 0};
+      return {minutesElapsed: 0};
     }
 
     tick() {
-      this.setState({secondsElapsed: this.state.secondsElapsed + 1});
+      this.setState({minutesElapsed: this.state.minutesElapsed + 1});
     }
 
     componentDidMount() {
-      this.interval = setInterval(this.tick.bind(this), 1000);
+      this.interval = setInterval(this.tick.bind(this), 60000);
     }
 
     componentWillUnmount() {
@@ -24,7 +25,9 @@ export default class Timer extends React.Component {
     
     render() {
       return (
-        <div>Seconds Elapsed: {this.state.secondsElapsed}</div>
+        <div>Time elapsed: {this.state.minutesElapsed}
+        <Progress completed={this.state.minutesElapsed} />
+        </div>
       );
     }
   }
