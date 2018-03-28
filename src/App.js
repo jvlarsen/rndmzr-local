@@ -4,7 +4,6 @@ import './App.css';
 import Randomize from './components/randomize';
 import Events from './components/events';
 import Participants from './components/participants';
-import Player from './components/player';
 import ParticipantNumber from './components/participantNumber';
 import Timer from './components/timer';
 import Teams from './components/teams';
@@ -56,7 +55,6 @@ constructor(props){
             </tr>
           </tbody>
         </table>
-        <Player />
         <PlayersBox includeReferee={this.state.refereeIncluded} />
         <ParticipantNumber onChangeNumber={this.onSetNumberOfParticipants.bind(this)}
           onToggleReferee={this.onRefereeToggle.bind(this)}
