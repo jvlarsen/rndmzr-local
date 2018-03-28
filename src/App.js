@@ -33,32 +33,37 @@ constructor(props){
 
         </p>
         <Timer />
-        <Teams />
-        <table>
-          <tbody>
-            <tr>
-              <td>
-                <div>
-                  <Events onOptionChange={this.onEventChange.bind(this)} selectedOption={this.state.selectedEvent}/>
-                </div>
-              </td>
-              <td>
-                <div>
-                  <Participants onOptionChange={this.onParticipantChange.bind(this)} selectedOption={this.state.selectedParticipant}/>
-                </div>
-              </td>
-              <td>
-                <div>
-                  <Randomize selectedEvent={this.state.selectedEvent} selectedParticipant={this.state.selectedParticipant}/>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <PlayersBox includeReferee={this.state.refereeIncluded} />
-        <ParticipantNumber onChangeNumber={this.onSetNumberOfParticipants.bind(this)}
+        
+
+        <div className="flex-grid">
+          <div className="col leftCol" >
+            <Events onOptionChange={this.onEventChange.bind(this)} selectedOption={this.state.selectedEvent}/>
+          </div>
+          <div className="col">
+            <Participants onOptionChange={this.onParticipantChange.bind(this)} selectedOption={this.state.selectedParticipant}/>
+          </div>
+          <div className="col">
+            <Randomize selectedEvent={this.state.selectedEvent} selectedParticipant={this.state.selectedParticipant}/>
+          </div>
+        </div>
+        <div className="col"><ParticipantNumber onChangeNumber={this.onSetNumberOfParticipants.bind(this)}
           onToggleReferee={this.onRefereeToggle.bind(this)}
          refereeIncluded={this.state.refereeIncluded}/>
+         <Teams />
+         </div>
+          
+        <div className="flex-grid">
+      
+          <div className="col leftCol">
+            <PlayersBox includeReferee={this.state.refereeIncluded} />
+          </div>
+          <div className="col">
+            <PlayersBox includeReferee={this.state.refereeIncluded} />
+          </div>
+        </div>
+
+        
+
       </div>
     );
   }

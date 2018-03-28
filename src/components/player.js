@@ -1,4 +1,5 @@
 import React from 'react';
+import './player.css';
 
 export default class Player extends React.Component {
 //Initially keeping as a nearby example of how to iterate arrays for component creation.

@@ -9,14 +9,17 @@ export default class ParticipantNumber extends React.Component {
     }
 
     return(
-      <div>
+      <div className="flex-grid">
+      <div className="col">
+        <label>Antal deltagere: </label>
         <select className="dropdown" onChange={this.props.onChangeNumber}>
           {options}
         </select>
-      <label>
-        Include referee?
+        <br/>
+        <label>Include referee?
           <input type="checkbox" checked={this.props.refereeIncluded} onChange={this.props.onToggleReferee}/>
-      </label>
+          </label>
+      </div>
       </div>
     );
   }
