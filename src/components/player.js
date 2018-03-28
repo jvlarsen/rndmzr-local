@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Players extends React.Component {
+export default class Player extends React.Component {
 
   render() {
     var names = ['Jake', 'Jon', 'Thruster'];

@@ -1,0 +1,24 @@
+import React from 'react';
+
+export default class PlayersBox extends React.Component {
+    render() {
+        
+             
+        const numberOfPlayers = this.props.includeReferee ? 21 : 20;
+        const includeReferee = this.props.includeReferee ? 'Yes' : 'No'; 
+        console.log(this.props.includeReferee);
+
+        var options = [];
+        for (var i = 0; i < numberOfPlayers; i++) {
+          options.push(<input type="text" value={i+1} key={i+1}/>)
+        }
+        return(
+            <div>
+                <label>numberOfPlayers: {numberOfPlayers}</label>
+                <label>include ref: {includeReferee} </label>
+                {options}
+
+            </div>
+        );
+    }
+}

@@ -4,10 +4,11 @@ import './App.css';
 import Randomize from './components/randomize';
 import Events from './components/events';
 import Participants from './components/participants';
-import Players from './components/players';
+import Player from './components/player';
 import ParticipantNumber from './components/participantNumber';
-import ProgressBar from './components/progressBar';
 import Timer from './components/timer';
+import Teams from './components/teams';
+import PlayersBox from './components/playersBox';
 
 class App extends Component {
 
@@ -16,7 +17,7 @@ constructor(props){
   this.state = {
     selectedEvent: null,
     selectedParticipant: null,
-    refereeIncluded: null,
+    refereeIncluded: false,
     minute: 0}
 }
 
@@ -32,8 +33,8 @@ constructor(props){
           To get started, edit <code>src/App.js</code> and save to reload.
 
         </p>
-        <ProgressBar minute={this.state.minute}/>
         <Timer />
+        <Teams />
         <table>
           <tbody>
             <tr>
@@ -55,8 +56,9 @@ constructor(props){
             </tr>
           </tbody>
         </table>
-        <Players />
-        <ParticipantNumber onChangeNumber={this.onParticipantNumberChange.bind(this)}
+        <Player />
+        <PlayersBox includeReferee={this.state.refereeIncluded} />
+        <ParticipantNumber onChangeNumber={this.onSetNumberOfParticipants.bind(this)}
           onToggleReferee={this.onRefereeToggle.bind(this)}
          refereeIncluded={this.state.refereeIncluded}/>
       </div>
@@ -68,16 +70,17 @@ constructor(props){
   }
 
   onParticipantChange(e) {
-    console.log(this.state.minute);
-    this.setState({selectedParticipant:e.target.value, minute:this.state.minute+1});
+    this.setState({selectedParticipant:e.target.value});
   }
 
   onRefereeToggle(e) {
-    console.log('ref toggled');
-    //this.setState({refereeIncluded:!refereeIncluded})
+    const newState = !this.state.refereeIncluded;
+    this.setState({refereeIncluded:newState})
+
+    console.log(newState);
   }
 
-  onParticipantNumberChange(e) {
+  onSetNumberOfParticipants(e) {
     console.log(e.target.value);
   }
 }
