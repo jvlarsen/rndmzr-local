@@ -1,6 +1,11 @@
 import React from 'react';
 
 export default class PlayerNames extends React.Component {
+constructor(props) {
+    super(props);
+    this.state = {selectedPlayer:null}
+}
+
     render() {
         const numberOfPlayers = 5;
 
@@ -9,16 +14,20 @@ export default class PlayerNames extends React.Component {
             var playerValue = this.props.team + i;
             console.log(playerValue);
             options.push(
-            <span>
-                <input type="radio" key={playerValue} value={playerValue} checked={this.props.selectedOption === playerValue} onChange={this.props.onOptionChange} key={i+1}/>
+            <div key={playerValue}>
+                <input type="radio" key={playerValue} value={playerValue} checked={this.state.selectedOption === playerValue} onChange={this.onPlayerChange.bind(this)}/>
                 <input type="text" />
                 <br/>
-            </span>)
+            </div>)
         }
         return(
             <div>
                 {options}
             </div>
         );
+    }
+
+    onPlayerChange(e) {
+        this.setState({selectedOption:e.target.value});
     }
 }
