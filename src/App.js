@@ -3,11 +3,10 @@ import logo from './logo.svg';
 import './App.css';
 import Randomize from './components/randomize';
 import Events from './components/events';
-import Participants from './components/participants';
-import ParticipantNumber from './components/participantNumber';
 import Timer from './components/timer';
 import Teams from './components/teams';
 import PlayersBox from './components/playersBox';
+import ParticipantBox from './components/participantComponents/participantBox';
 
 class App extends Component {
 
@@ -33,22 +32,18 @@ constructor(props){
 
         </p>
         <Timer />
-        
+        <ParticipantBox addParticipant={this.addParticipant}/>
 
         <div className="flex-grid">
           <div className="col leftCol" >
             <Events onOptionChange={this.onEventChange.bind(this)} selectedOption={this.state.selectedEvent}/>
           </div>
-          <div className="col">
-            <Participants onOptionChange={this.onParticipantChange.bind(this)} selectedOption={this.state.selectedParticipant}/>
-          </div>
+
           <div className="col">
             <Randomize selectedEvent={this.state.selectedEvent} selectedParticipant={this.state.selectedParticipant}/>
           </div>
         </div>
-        <div className="col"><ParticipantNumber onChangeNumber={this.onSetNumberOfParticipants.bind(this)}
-          onToggleReferee={this.onRefereeToggle.bind(this)}
-         refereeIncluded={this.state.refereeIncluded}/>
+        <div className="col">
          <Teams />
          </div>
           
@@ -85,6 +80,10 @@ constructor(props){
 
   onSetNumberOfParticipants(e) {
     console.log(e.target.value);
+  }
+
+  addParticipant(e) {
+    console.log('hello');
   }
 }
 
