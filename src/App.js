@@ -34,7 +34,7 @@ constructor(props){
         <div className="flex-grid">
         </div>
         <ParticipantBox addParticipant={this.addParticipant}/>
-        
+
 
       </div>
     );

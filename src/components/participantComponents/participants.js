@@ -1,23 +1,48 @@
 import React from 'react';
 
 export default class Participants extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {numberOfParticipants:2, participants:['Hans', 'Bob']}
+  }
+    render() {
+      return(
+        <div>
+          <ParticipantsRadio participants={this.props.participantNames} />
+        </div>
+      );
+    }
+
+}
+
+class ParticipantsRadio extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state={selectedOption:this.props.selectedOption}
+  }
 
   render() {
-    return(
+    var participantRadios = [];
+    var selectedOption = this.state.selectedOption;
+    var onOptionChange = this.onOptionChange.bind(this);
+    this.props.participants.map(function(participantName, index) {
+        participantRadios.push(<div className='radio' key={index}>
+          <label>
+            <input type='radio' value={participantName} key={index} checked={selectedOption === participantName} onChange={onOptionChange} />
+            {participantName}
+          </label>
+        </div>);
+        return participantRadios;
+    });
+
+    return (
       <form>
-        <div className="radio">
-          <label>
-            <input type="radio" value="participant1" checked={this.props.selectedOption === 'participant1'} onChange={this.props.onOptionChange}/>
-            Participant 1
-          </label>
-        </div>
-        <div className="radio">
-          <label>
-            <input type="radio" value="participant2" checked={this.props.selectedOption === 'participant2'} onChange={this.props.onOptionChange} />
-            Participant 2
-          </label>
-        </div>
+        {participantRadios}
       </form>
     );
+  }
+
+  onOptionChange(e) {
+    this.setState({selectedOption:e.target.value})
   }
 }

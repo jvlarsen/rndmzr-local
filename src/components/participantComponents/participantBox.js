@@ -1,19 +1,27 @@
 import React from 'react';
 import ParticipantAdder from './participantAdder';
-import ParticipantsRadio from './participants';
+import Participants from './participants';
 
 export default class ParticipantBox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state={participantNames:[]}
+  }
+
     render(){
         return(
             <div>
                 <ParticipantAdder addParticipant={this.addParticipant.bind(this)}/>
-                <ParticipantsRadio />
+                <Participants participantNames={this.state.participantNames}/>
             </div>
         );
     }
 
-    addParticipant(e) {
-        e.preventDefault();
-        console.log(e.target.value);
+    addParticipant(newParticipant) {
+        if (this.state.participantNames.includes(newParticipant)) {
+          return;
+        }
+        this.state.participantNames.push(newParticipant);
+        this.setState({participantNames: this.state.participantNames});
     }
 }
