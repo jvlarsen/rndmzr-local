@@ -18,7 +18,7 @@ export default class ParticipantBox extends React.Component {
     }
 
     addParticipant(newParticipant) {
-        if (this.state.participantNames.includes(newParticipant)) {
+        if (newParticipant.length === 0 || this.state.participantNames.includes(newParticipant)) {
           return;
         }
         this.state.participantNames.push(newParticipant);
