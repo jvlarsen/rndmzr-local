@@ -12,6 +12,7 @@ constructor(props){
   this.state = {
     selectedEvent: null,
     selectedParticipant: null,
+    selectedPlayer:null,
     refereeIncluded: false,
     minute: 0}
 }
@@ -24,10 +25,10 @@ constructor(props){
             <Events onOptionChange={this.onEventChange.bind(this)} selectedOption={this.state.selectedEvent}/>
           </div>
           <div className="col">
-         <TeamBox />
+         <TeamBox onChange={this.onPlayerChange.bind(this)} selectedPlayer={this.state.selectedPlayer}/>
          </div>
           <div className="col">
-            <Randomize selectedEvent={this.state.selectedEvent} selectedParticipant={this.state.selectedParticipant}/>
+            <Randomize selectedEvent={this.state.selectedEvent} selectedPlayer={this.state.selectedPlayer}/>
           </div>
         </div>
 
@@ -46,6 +47,12 @@ constructor(props){
 
   onParticipantChange(e) {
     this.setState({selectedParticipant:e.target.value});
+  }
+
+  onPlayerChange(e) {
+    console.log('hej');
+    console.log(e.target.value);
+    this.setState({selectedPlayer:e.target.value});
   }
 
   onRefereeToggle(e) {

@@ -12,8 +12,8 @@ render() {
 
   clickHandler() {
     const selectedEvent = this.props.selectedEvent;
-    const selectedParticipant = this.props.selectedParticipant;
+    const selectedPlayer = this.props.selectedPlayer;
     console.log('Randomizer clicked');
-    console.log(selectedEvent + ' - ' + selectedParticipant);
+    console.log(selectedEvent + ' - ' + selectedPlayer);
   }
 }

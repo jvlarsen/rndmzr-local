@@ -7,11 +7,10 @@ export default class Events extends React.Component {
     var eventRadios = [];
     var selectedOption = this.props.selectedOption;
     const onOptionChange = this.props.onOptionChange;
-    console.log(selectedOption);
     events.map(function(eventName, index) {
       eventRadios.push(<div className="radio" key={index}>
               <label>
-                <input type="radio" value={eventName} key={index} checked={selectedOption === eventName} onChange={onOptionChange}/>
+                <input className='bigradio' type="radio" value={eventName} key={index} checked={selectedOption === eventName} onChange={onOptionChange}/>
                 {eventName}
               </label>
             </div>);
@@ -25,4 +24,3 @@ export default class Events extends React.Component {
     );
   }
 }
-
