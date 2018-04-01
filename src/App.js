@@ -20,6 +20,7 @@ constructor(props){
   render() {
     return (
       <div className="App">
+              <br/>
         <div className="flex-grid">
           <div className="col leftCol" >
             <Events onOptionChange={this.onEventChange.bind(this)} selectedOption={this.state.selectedEvent}/>
@@ -31,10 +32,14 @@ constructor(props){
             <Randomize selectedEvent={this.state.selectedEvent} selectedPlayer={this.state.selectedPlayer}/>
           </div>
         </div>
+        <div className="flex-grid">
+        <br/>
+        </div>
 
         <div className="flex-grid">
+<ParticipantBox addParticipant={this.addParticipant}/>
         </div>
-        <ParticipantBox addParticipant={this.addParticipant}/>
+        <br/>
 
 
       </div>

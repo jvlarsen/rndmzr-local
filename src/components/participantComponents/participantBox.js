@@ -12,7 +12,7 @@ export default class ParticipantBox extends React.Component {
         return(
             <div>
                 <ParticipantAdder addParticipant={this.addParticipant.bind(this)}/>
-                <Participants className="leftCol" participantNames={this.state.participantNames}/>
+                <Participants participantNames={this.state.participantNames}/>
             </div>
         );
     }
