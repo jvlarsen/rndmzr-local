@@ -5,6 +5,8 @@ import Events from './components/events';
 import ParticipantBox from './components/participantComponents/participantBox';
 import TeamBox from './components/team/teamBox';
 
+import Connector from './helpers/connector';
+
 class App extends Component {
 
 constructor(props){
@@ -37,7 +39,7 @@ constructor(props){
         </div>
 
         <div className="flex-grid">
-<ParticipantBox addParticipant={this.addParticipant}/>
+          <ParticipantBox addParticipant={this.addParticipant}/>
         </div>
         <br/>
 
@@ -49,8 +51,21 @@ constructor(props){
   onClickRandomize(e) {
     var selectedEvent = this.state.selectedEvent;
     var selectedPlayer = this.state.selectedPlayer;
+    var randomizerResult = Connector.randomize(selectedEvent, selectedPlayer);
+    this.updateWhatToDrink(randomizerResult);
+  }
 
-    console.log(selectedEvent + ' - ' + selectedPlayer);
+  updateWhatToDrink(randomizerResult) {
+    console.log('In here we update the fields for each participant.');
+    console.log(randomizerResult);
+    /*Jeg vil gerne kunne hive key-value pair ud af arrayet.
+    Key skal bruges til at slå op i document.getElementById og value skal bruges til at sætte
+    værdien for hvad deltagerne skal drikke.
+    */
+    for (var i = 0; i < randomizerResult.length; i++) {
+      console.log(randomizerResult[i].status);
+      document.getElementById(randomizerResult[i].status).value = randomizerResult[i].value;
+    }
   }
 
   onEventChange(e) {
