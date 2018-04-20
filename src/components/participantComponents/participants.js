@@ -31,7 +31,7 @@ class ParticipantsRadio extends React.Component {
             <input type='radio' value={participantName} key={index} checked={selectedOption === participantName} onChange={onOptionChange} />
             {participantName}
             <input type='text' key={'status'+index} readOnly />
-            <input type='button' key={'addBank'+index} value='Sæt i banken' onClick={onAddBank}/>
+            <input type='button' key={'addBank'+index} id={'addBank'+index} value='Sæt i banken' onClick={onAddBank}/>
           </label>
         </div>);
         return participantRadios;
@@ -49,6 +49,6 @@ class ParticipantsRadio extends React.Component {
   }
 
   onAddBank(e) {
-    console.log(e.target.value);
+    console.log(e.target.id);
   }
 }

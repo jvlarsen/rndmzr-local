@@ -29,7 +29,7 @@ constructor(props){
          <TeamBox onChange={this.onPlayerChange.bind(this)} selectedPlayer={this.state.selectedPlayer}/>
          </div>
           <div className="col">
-            <Randomize selectedEvent={this.state.selectedEvent} selectedPlayer={this.state.selectedPlayer}/>
+            <Randomize selectedEvent={this.state.selectedEvent} selectedPlayer={this.state.selectedPlayer} onClick={this.onClickRandomize.bind(this)}/>
           </div>
         </div>
         <div className="flex-grid">
@@ -44,6 +44,13 @@ constructor(props){
 
       </div>
     );
+  }
+
+  onClickRandomize(e) {
+    var selectedEvent = this.state.selectedEvent;
+    var selectedPlayer = this.state.selectedPlayer;
+
+    console.log(selectedEvent + ' - ' + selectedPlayer);
   }
 
   onEventChange(e) {
