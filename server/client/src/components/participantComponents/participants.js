@@ -25,7 +25,7 @@ class ParticipantsRadio extends React.Component {
     var selectedOption = this.state.selectedOption;
     var onOptionChange = this.onOptionChange.bind(this);
     var onAddBank = this.onAddBank.bind(this);
-    this.props.participants.map(function(participantName, index) {
+    this.state.participants.map(function(participantName, index) {
         participantRadios.push(<div className='radio' key={index}>
           <label>
             <input type='radio' value={participantName} key={index} checked={selectedOption === participantName} onChange={onOptionChange} />
