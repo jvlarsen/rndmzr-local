@@ -8,7 +8,7 @@ export default class Participants extends React.Component {
     render() {
       return(
         <div>
-          <ParticipantsRadio participants={this.props.participants} />
+          <ParticipantsRadio participants={this.props.participantNames} />
         </div>
       );
     }
@@ -21,27 +21,21 @@ class ParticipantsRadio extends React.Component {
   }
 
   render() {
-    console.log(this.props.participants);
     var participantRadios = [];
     var selectedOption = this.state.selectedOption;
     var onOptionChange = this.onOptionChange.bind(this);
     var onAddBank = this.onAddBank.bind(this);
-
-/*    {this.state.participants.map(participant =>
-    <li key={participant.id}>{participant.name}</li>)}
-*/
-    this.props.participants.map(participant =>
-        participantRadios.push(
-          <div className='radio' key={participant.id}>
+    this.props.participants.map(function(participantName, index) {
+        participantRadios.push(<div className='radio' key={index}>
           <label>
-            <input type='radio' value={participant.name} key={participant.id} checked={selectedOption === participant.name} onChange={onOptionChange} />
-            {participant.name}
-            <input type='text' key={'status'+participant.id} id={'status'+participant.id} ref={'status'+participant.id} readOnly />
-            <input type='button' key={'addBank'+participant.id} id={'addBank'+participant.id} value='Sæt i banken' onClick={onAddBank}/>
+            <input type='radio' value={participantName} key={index} checked={selectedOption === participantName} onChange={onOptionChange} />
+            {participantName}
+            <input type='text' key={'status'+index} id={'status'+index} ref={'status'+index} readOnly />
+            <input type='button' key={'addBank'+index} id={'addBank'+index} value='Sæt i banken' onClick={onAddBank}/>
           </label>
-        </div>));
-        //return participantRadios;
-
+        </div>);
+        return participantRadios;
+    });
 
     return (
       <form className='leftCol'>

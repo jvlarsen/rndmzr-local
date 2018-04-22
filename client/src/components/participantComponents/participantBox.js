@@ -5,14 +5,14 @@ import Participants from './participants';
 export default class ParticipantBox extends React.Component {
   constructor(props) {
     super(props);
-    this.state={participants: this.props.participants}
+    this.state={participantNames:[]}
   }
 
     render(){
         return(
             <div>
                 <ParticipantAdder addParticipant={this.addParticipant.bind(this)}/>
-                <Participants participants={this.props.participants}/>
+                <Participants participantNames={this.state.participantNames}/>
             </div>
         );
     }
@@ -21,6 +21,7 @@ export default class ParticipantBox extends React.Component {
         if (newParticipant.length === 0 || this.state.participantNames.includes(newParticipant)) {
           return;
         }
+
         this.state.participantNames.push(newParticipant);
         this.setState({participantNames: this.state.participantNames});
     }

@@ -21,12 +21,13 @@ constructor(props){
 }
 
   //Den her kaldes EFTER component er mounted.
-  componentDidMount() {
+/*  componentDidMount() {
     fetch('/participants')
       .then(res => res.json())
       .then(participants => this.setState({participants}));
 
   }
+  */
 
   render() {
     console.log(this.state.participants);
@@ -34,12 +35,6 @@ constructor(props){
       <div className="App">
               <br/>
         <div className="flex-grid">
-        <div>
-          <ul>
-            {this.state.participants.map(participant =>
-            <li key={participant.id}>{participant.name}</li>)}
-          </ul>
-        </div>
           <div className="col leftCol" >
             <Events onOptionChange={this.onEventChange.bind(this)} selectedOption={this.state.selectedEvent}/>
           </div>
@@ -55,7 +50,7 @@ constructor(props){
         </div>
 
         <div className="flex-grid">
-          <ParticipantBox addParticipant={this.addParticipant} participants={this.state.participants}/>
+          <ParticipantBox participants={this.state.participants}/>
         </div>
         <br/>
 
@@ -72,16 +67,11 @@ constructor(props){
   }
 
   updateWhatToDrink(randomizerResult) {
-    console.log('In here we update the fields for each participant.');
-    console.log(randomizerResult);
-    /*Jeg vil gerne kunne hive key-value pair ud af arrayet.
-    Key skal bruges til at slå op i document.getElementById og value skal bruges til at sætte
-    værdien for hvad deltagerne skal drikke.
-    */
-    for (var i = 0; i < randomizerResult.length; i++) {
-      console.log(randomizerResult[i].status);
-      document.getElementById(randomizerResult[i].status).value = randomizerResult[i].value;
-    }
+    randomizerResult.map(result => {
+      var eleId = 'status' + result.status;
+      document.getElementById(eleId).value = result.value;
+      return 1;
+    })
   }
 
   onEventChange(e) {
@@ -103,14 +93,6 @@ constructor(props){
     this.setState({refereeIncluded:newState})
 
     console.log(newState);
-  }
-
-  onSetNumberOfParticipants(e) {
-    console.log(e.target.value);
-  }
-
-  addParticipant(e) {
-    console.log('hello');
   }
 }
 
