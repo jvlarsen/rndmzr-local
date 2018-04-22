@@ -83,7 +83,6 @@ constructor(props){
   }
 
   onPlayerChange(e) {
-    console.log('hej');
     console.log(e.target.value);
     this.setState({selectedPlayer:e.target.value});
   }
