@@ -32,6 +32,7 @@ class ParticipantsRadio extends React.Component {
             {participantName}
             <input type='text' key={'status'+index} id={'status'+index} ref={'status'+index} readOnly />
             <input type='button' key={'addBank'+index} id={'addBank'+index} value='Sæt i banken' onClick={onAddBank}/>
+            <input type="text" key={'bank'+index} id={'bank'+index} readOnly />
           </label>
         </div>);
         return participantRadios;
@@ -49,6 +50,10 @@ class ParticipantsRadio extends React.Component {
   }
 
   onAddBank(e) {
-    console.log(e.target.id);
+    var index = e.target.id.substring(7);
+    var status = document.getElementById('status'+index);
+    var currBank = document.getElementById('bank'+index);
+    var newBank = (parseInt(currBank.value) || 0) + (parseInt(status.value) || 0);
+    currBank.value = newBank;
   }
 }
