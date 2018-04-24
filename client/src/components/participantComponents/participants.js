@@ -25,12 +25,14 @@ class ParticipantsRadio extends React.Component {
     var selectedOption = this.state.selectedOption;
     var onOptionChange = this.onOptionChange.bind(this);
     var onAddBank = this.onAddBank.bind(this);
+    var onDrink = this.onDrink.bind(this);
     this.props.participants.map(function(participantName, index) {
         participantRadios.push(<div className='radio' key={index}>
           <label>
             <input type='radio' value={participantName} key={index} checked={selectedOption === participantName} onChange={onOptionChange} />
             {participantName}
             <input type='text' key={'status'+index} id={'status'+index} ref={'status'+index} readOnly />
+            <input type="button" key={'drink'+index} id={'drink'+index} value='Skål' onClick={onDrink}/>
             <input type='button' key={'addBank'+index} id={'addBank'+index} value='Sæt i banken' onClick={onAddBank}/>
             <input type="text" key={'bank'+index} id={'bank'+index} readOnly />
           </label>
@@ -53,7 +55,16 @@ class ParticipantsRadio extends React.Component {
     var index = e.target.id.substring(7);
     var status = document.getElementById('status'+index);
     var currBank = document.getElementById('bank'+index);
-    var newBank = (parseInt(currBank.value) || 0) + (parseInt(status.value) || 0);
+
+    var statusValue = parseInt(status.value) || 0;
+    var currBankValue = parseInt(currBank.value) || 0;
+    var newBank = statusValue + currBankValue;
     currBank.value = newBank;
+  }
+
+  onDrink(e) {
+    var index = e.target.id.substring(5);
+    var status = document.getElementById('status'+index);
+    status.value = '';
   }
 }
