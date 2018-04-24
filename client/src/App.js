@@ -6,6 +6,7 @@ import ParticipantBox from './components/participantComponents/participantBox';
 import TeamBox from './components/team/teamBox';
 
 import Connector from './helpers/connector';
+import ElementsHelper from './helpers/elementsHelper';
 
 class App extends Component {
 
@@ -68,8 +69,7 @@ constructor(props){
 
   updateWhatToDrink(randomizerResult) {
     randomizerResult.map(result => {
-      var eleId = 'status' + result.status;
-      document.getElementById(eleId).value = result.value;
+      ElementsHelper.getStatus(result.status).value = result.value;
       return 1;
     })
   }

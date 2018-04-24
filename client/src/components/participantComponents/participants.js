@@ -1,4 +1,5 @@
 import React from 'react';
+import ElementHelper from '../../helpers/elementsHelper';
 
 export default class Participants extends React.Component {
   constructor(props) {
@@ -51,31 +52,17 @@ class ParticipantsRadio extends React.Component {
     this.setState({selectedOption:e.target.value})
   }
 
-  onAddBank(e) {
+  onAddBank(e, numd) {
+    console.log(numd);
     var index = e.target.id.substring(7);
-    var status = this.getCurrentStatus(index);
-    var currBank = this.getCurrentBank(index);
+    var status = ElementHelper.getStatus(index);
+    var currBank = ElementHelper.getBank(index);
 
-    var statusValue = this.getElementNumericValue(status);
-    var currBankValue = this.getElementNumericValue(currBank);
+    var statusValue = parseInt(status.value, 10) || 0;
+    var currBankValue =  parseInt(currBank.value, 10) || 0;
     var newBank = statusValue + currBankValue;
     currBank.value = newBank;
     this.clearElementValue(status);
-  }
-
-  getElementNumericValue(element) {
-    var value = parseInt(element.value) || 0;
-    return value;
-  }
-
-  getCurrentBank(index) {
-    var currBank = document.getElementById('bank'+index);
-    return currBank;
-  }
-
-  getCurrentStatus(index) {
-    var currStatus = document.getElementById('status'+index);
-    return currStatus;
   }
 
   clearElementValue(element) {
@@ -84,7 +71,7 @@ class ParticipantsRadio extends React.Component {
 
   onDrink(e) {
     var index = e.target.id.substring(5);
-    var status = this.getCurrentStatus(index);
+    var status = ElementHelper.getStatus(index);
     this.clearElementValue(status);
     status.value = '';
   }
