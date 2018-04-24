@@ -4,7 +4,6 @@ import Connector from '../helpers/connector';
 export default class Events extends React.Component {
 
   render() {
-    //var events = ['Mål', 'Frispark', 'Gult kort', 'Hjørne taget', 'Straffe begået', 'Straffe brændt', 'Skud på mål'];
     var events = Connector.getEvents();
 
     var eventRadios = [];

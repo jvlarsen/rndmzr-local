@@ -17,8 +17,7 @@ constructor(props){
     selectedParticipant: null,
     selectedPlayer:null,
     refereeIncluded: false,
-    minute: 0,
-    participants: []}
+    minute: 0}
 }
 
   //Den her kaldes EFTER component er mounted.
@@ -51,7 +50,7 @@ constructor(props){
         </div>
 
         <div className="flex-grid">
-          <ParticipantBox participants={this.state.participants}/>
+          <ParticipantBox/>
         </div>
         <br/>
 
