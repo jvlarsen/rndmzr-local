@@ -53,18 +53,39 @@ class ParticipantsRadio extends React.Component {
 
   onAddBank(e) {
     var index = e.target.id.substring(7);
-    var status = document.getElementById('status'+index);
-    var currBank = document.getElementById('bank'+index);
+    var status = this.getCurrentStatus(index);
+    var currBank = this.getCurrentBank(index);
 
-    var statusValue = parseInt(status.value) || 0;
-    var currBankValue = parseInt(currBank.value) || 0;
+    var statusValue = this.getElementNumericValue(status);
+    var currBankValue = this.getElementNumericValue(currBank);
     var newBank = statusValue + currBankValue;
     currBank.value = newBank;
+    this.clearElementValue(status);
+  }
+
+  getElementNumericValue(element) {
+    var value = parseInt(element.value) || 0;
+    return value;
+  }
+
+  getCurrentBank(index) {
+    var currBank = document.getElementById('bank'+index);
+    return currBank;
+  }
+
+  getCurrentStatus(index) {
+    var currStatus = document.getElementById('status'+index);
+    return currStatus;
+  }
+
+  clearElementValue(element) {
+    element.value = null;
   }
 
   onDrink(e) {
     var index = e.target.id.substring(5);
-    var status = document.getElementById('status'+index);
+    var status = this.getCurrentStatus(index);
+    this.clearElementValue(status);
     status.value = '';
   }
 }
