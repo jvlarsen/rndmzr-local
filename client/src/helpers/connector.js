@@ -9,9 +9,9 @@ const randomize = (selectedEvent, selectedPlayer) => {
 }
 
 const getParticipants = () => {
-  var result = fetch('/participants')
+  var participants = fetch('/participants')
     .then(res => res.json());
-  return result;
+  return participants;
 }
 
 const getEvents = () => {
@@ -21,12 +21,9 @@ const getEvents = () => {
   //Type 2 = Owner 1
   //Type 2 = Owner 2
   //Type 2 = Owner 3
-  var allEvents = [{Id:1, Name:'Goal', Type:'Other3'},
-                  {Id:2, Name:'Free kick committed', Type:'Own1'},
-                  {Id:3, Name:'Yellow card', Type:'Own2'},
-                  {Id:4, Name:'Shot on target', Type:'Other1'},
-                  {Id:5, Name:'Assist', Type:'Other2'},
-                  {Id:6, Name:'Medic', Type:'Own1'}];
+  var allEvents = fetch('/events')
+    .then(res => res.json());
+
   return allEvents;
 }
 
