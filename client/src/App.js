@@ -4,9 +4,9 @@ import Randomize from './components/randomize';
 import Events from './components/events';
 import ParticipantBox from './components/participantComponents/participantBox';
 import TeamBox from './components/team/teamBox';
-
 import Connector from './helpers/connector';
 import ElementsHelper from './helpers/elementsHelper';
+import Engine from './helpers/randomizer';
 
 class App extends Component {
 
@@ -17,20 +17,12 @@ constructor(props){
     selectedParticipant: null,
     selectedPlayer:null,
     refereeIncluded: false,
-    minute: 0}
+    minute: 0,
+    numberOfParticipants: 0,
+  }
 }
 
-  //Den her kaldes EFTER component er mounted.
-/*  componentDidMount() {
-    fetch('/participants')
-      .then(res => res.json())
-      .then(participants => this.setState({participants}));
-
-  }
-  */
-
   render() {
-    console.log(this.state.participants);
     return (
       <div className="App">
               <br/>
@@ -50,11 +42,10 @@ constructor(props){
         </div>
 
         <div className="flex-grid">
-          <ParticipantBox/>
+          <ParticipantBox participantAdded={this.participantAdded.bind(this)}/>
+          <input type='button' onClick={this.allocatePlayers} value='Fordel holdene' />
         </div>
         <br/>
-
-
       </div>
     );
   }
@@ -64,6 +55,16 @@ constructor(props){
     var selectedPlayer = this.state.selectedPlayer;
     var randomizerResult = Connector.randomize(selectedEvent, selectedPlayer);
     this.updateWhatToDrink(randomizerResult);
+  }
+
+  allocatePlayers = () => {
+    Engine.allocatePlayers(this.state.numberOfParticipants);
+  }
+
+  participantAdded = () => {
+    var current = this.state.numberOfParticipants;
+    current++;
+    this.setState({numberOfParticipants:current});
   }
 
   updateWhatToDrink(randomizerResult) {
@@ -82,15 +83,12 @@ constructor(props){
   }
 
   onPlayerChange(e) {
-    console.log(e.target.value);
     this.setState({selectedPlayer:e.target.value});
   }
 
   onRefereeToggle(e) {
     const newState = !this.state.refereeIncluded;
     this.setState({refereeIncluded:newState})
-
-    console.log(newState);
   }
 }
 

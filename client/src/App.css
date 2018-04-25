@@ -30,6 +30,10 @@ div {
   transform: scale(1.6);
 }
 
+.testing {
+  width: 100px;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -44,4 +48,8 @@ div {
 
 .leftCol {
   text-align: left;
+}
+
+.rightCol {
+  text-align: right;
 }

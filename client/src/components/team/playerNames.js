@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default class PlayerNames extends React.Component {
-
     render() {
         const numberOfPlayers = 10;
 

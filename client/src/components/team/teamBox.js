@@ -3,7 +3,6 @@ import PlayerNames from './playerNames';
 import Team from './teamName';
 
 export default class TeamBox extends React.Component {
-
     render() {
         return(
             <div className="flex-grid">

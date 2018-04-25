@@ -52,8 +52,7 @@ class ParticipantsRadio extends React.Component {
     this.setState({selectedOption:e.target.value})
   }
 
-  onAddBank(e, numd) {
-    console.log(numd);
+  onAddBank(e) {
     var index = e.target.id.substring(7);
     var status = ElementHelper.getStatus(index);
     var currBank = ElementHelper.getBank(index);
