@@ -18,6 +18,7 @@ constructor(props){
     refereeIncluded: false,
     minute: 0,
     numberOfParticipants: 0,
+    includeReferee: false,
   }
 }
 
@@ -57,7 +58,7 @@ constructor(props){
   }
 
   allocatePlayers = () => {
-    Engine.allocatePlayers(this.state.numberOfParticipants);
+    Engine.allocatePlayers(this.state.numberOfParticipants, this.state.includeReferee);
     /*Lav noget med en property på hhv. Participants og Players, der mapper mellem
     de to.
     Eksempelvis <Participant allocationKey=1 ... />
