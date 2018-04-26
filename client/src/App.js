@@ -4,7 +4,6 @@ import Randomize from './components/randomize';
 import Events from './components/events';
 import ParticipantBox from './components/participantComponents/participantBox';
 import TeamBox from './components/team/teamBox';
-import Connector from './helpers/connector';
 import ElementsHelper from './helpers/elementsHelper';
 import Engine from './helpers/randomizer';
 
@@ -53,7 +52,7 @@ constructor(props){
   onClickRandomize(e) {
     var selectedEvent = this.state.selectedEvent;
     var selectedPlayer = this.state.selectedPlayer;
-    var randomizerResult = Connector.randomize(selectedEvent, selectedPlayer);
+    var randomizerResult = Engine.randomize(selectedEvent, selectedPlayer);
     this.updateWhatToDrink(randomizerResult);
   }
 
