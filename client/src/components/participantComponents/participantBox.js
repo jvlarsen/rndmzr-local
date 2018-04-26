@@ -24,6 +24,7 @@ export default class ParticipantBox extends React.Component {
 
         this.state.participantNames.push(newParticipant);
         this.setState({participantNames: this.state.participantNames});
+        this.props.addParticipantToGraph(newParticipant);
         this.props.participantAdded();
     }
 }

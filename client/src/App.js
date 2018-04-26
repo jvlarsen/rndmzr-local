@@ -6,7 +6,7 @@ import ParticipantBox from './components/participantComponents/participantBox';
 import TeamBox from './components/team/teamBox';
 import ElementsHelper from './helpers/elementsHelper';
 import Engine from './helpers/randomizer';
-import Line from './components/line';
+import Line from './components/graph/line';
 
 class App extends Component {
 
@@ -18,8 +18,8 @@ constructor(props){
     selectedPlayer:null,
     refereeIncluded: false,
     minute: 0,
-    numberOfParticipants: 0,
     includeReferee: false,
+    participantNames:[]
   }
 }
 
@@ -36,7 +36,8 @@ constructor(props){
          </div>
           <div className="col">
             <Randomize selectedEvent={this.state.selectedEvent} selectedPlayer={this.state.selectedPlayer} onClick={this.onClickRandomize.bind(this)}/>
-            <Line />
+
+            <Line participants={this.state.participantNames}/>
           </div>
         </div>
         <div className="flex-grid">
@@ -44,7 +45,7 @@ constructor(props){
         </div>
 
         <div className="flex-grid">
-          <ParticipantBox participantAdded={this.participantAdded.bind(this)}/>
+          <ParticipantBox participantAdded={this.addParticipantToGraph.bind(this)} addParticipantToGraph={this.addParticipantToGraph.bind(this)}/>
           <input type='button' onClick={this.allocatePlayers} value='Fordel holdene' />
         </div>
         <br/>
@@ -60,7 +61,7 @@ constructor(props){
   }
 
   allocatePlayers = () => {
-    Engine.allocatePlayers(this.state.numberOfParticipants, this.state.includeReferee);
+    Engine.allocatePlayers(this.state.participantNames.length, this.state.includeReferee);
     /*Lav noget med en property på hhv. Participants og Players, der mapper mellem
     de to.
     Eksempelvis <Participant allocationKey=1 ... />
@@ -69,10 +70,10 @@ constructor(props){
     */
   }
 
-  participantAdded = () => {
-    var current = this.state.numberOfParticipants;
-    current++;
-    this.setState({numberOfParticipants:current});
+  addParticipantToGraph = (participantName) => {
+    var participants = this.state.participantNames;
+    participants.push(participantName);
+    this.setState({participantNames:participants});
   }
 
   updateWhatToDrink(randomizerResult) {
