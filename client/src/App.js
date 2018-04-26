@@ -6,6 +6,7 @@ import ParticipantBox from './components/participantComponents/participantBox';
 import TeamBox from './components/team/teamBox';
 import ElementsHelper from './helpers/elementsHelper';
 import Engine from './helpers/randomizer';
+import Line from './components/line';
 
 class App extends Component {
 
@@ -35,6 +36,7 @@ constructor(props){
          </div>
           <div className="col">
             <Randomize selectedEvent={this.state.selectedEvent} selectedPlayer={this.state.selectedPlayer} onClick={this.onClickRandomize.bind(this)}/>
+            <Line />
           </div>
         </div>
         <div className="flex-grid">
