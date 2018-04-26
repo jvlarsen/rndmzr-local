@@ -59,6 +59,12 @@ constructor(props){
 
   allocatePlayers = () => {
     Engine.allocatePlayers(this.state.numberOfParticipants);
+    /*Lav noget med en property på hhv. Participants og Players, der mapper mellem
+    de to.
+    Eksempelvis <Participant allocationKey=1 ... />
+    <Player allocationKey=1 ... />
+    Så kan der kobles mellem de to, og det giver en foreign key til databasen.
+    */
   }
 
   participantAdded = () => {
