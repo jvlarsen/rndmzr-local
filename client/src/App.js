@@ -69,7 +69,10 @@ constructor(props){
 
   updateWhatToDrink(randomizerResult) {
     randomizerResult.map(result => {
-      ElementsHelper.getStatus(result.status).value = result.value;
+      var currStatus = ElementsHelper.getStatus(result.status);
+      if (currStatus !== undefined && currStatus !== null) {
+        currStatus.value = result.value;
+      }
       return 1;
     })
   }
